@@ -16,8 +16,11 @@ define([
         },
         changeSlide: function () {
             var method = this.options.direction + 'Slide';
-            if (this.options.appCurrentView && this.options.appCurrentView[method]) {
-                this.options.appCurrentView[method]();
+            var view = this.options.appCurrentView;
+            if (view && view[method]) {
+                view[method]();
+            } else if (view && view.subviews && view.subviews.slidesContainer && view.subviews.slidesContainer[method]) {
+                view.subviews.slidesContainer[method]();
             } else {
                 console.warn('No method ' + method + ' on the current app view:', this.options.appCurrentView);
             }

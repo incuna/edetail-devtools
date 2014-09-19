@@ -1,0 +1,10 @@
+{
+  "name": "edetail-devtools",
+  "version": "0.0.0",
+  "description": "A package to make developing eDetails easier.",
+  "author": "Henry Blyth",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

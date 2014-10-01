@@ -1,7 +1,11 @@
 define([
-    'backbone-zepto'
+    'backbone-zepto',
+    'zepto',
+    'lodash'
 ], function (
-    Backbone
+    Backbone,
+    $,
+    _
 ) {
 
     'use strict';
@@ -9,6 +13,25 @@ define([
     return Backbone.View.extend({
         events: {
             'tap': 'changeSlide'
+        },
+        initialize: function () {
+            // The `keydown` event doesn't bubble so it cannot be used with
+            // Backbone's event delegation.
+            _.bindAll(this, 'keydown');
+            $(document).on('keydown', this.keydown);
+        },
+        remove: function () {
+            $(document).off('keydown', this.keydown);
+            Backbone.View.prototype.remove.apply(this, arguments);
+        },
+        keyCodeToDirection: {
+            37: 'prev',
+            39: 'next'
+        },
+        keydown: function (event) {
+            if (this.keyCodeToDirection[event.keyCode] === this.options.direction) {
+                this.changeSlide();
+            }
         },
         render: function () {
             this.$el.html(this.options.html || '');

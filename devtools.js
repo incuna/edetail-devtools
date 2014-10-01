@@ -27,12 +27,15 @@ define([
                 var view = new ChangeSlidesArrowView(options);
                 var styles = {
                     position: 'absolute',
-                    top: '50%',
+                    top: '10%',
+                    bottom: '10%',
                     zIndex: 100,
+                    opacity: 0,
+                    width: '50px',
                     fontSize: '32px',
                     fontWeight: 'bold'
                 };
-                styles[options.side] = '1em';
+                styles[options.side] = 0;
                 view.render().$el.css(styles).css();
                 $(document.body).append(view.$el);
                 return view;

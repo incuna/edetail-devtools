@@ -1,11 +1,13 @@
 define([
     './ChangeSlidesArrowView',
     'has',
-    'lodash'
+    'lodash',
+    'zepto'
 ], function (
     ChangeSlidesArrowView,
     has,
-    _
+    _,
+    $
 ) {
 
     'use strict';
@@ -69,6 +71,15 @@ define([
 
             run();
 
+        },
+
+        fixTransitionEnd: function () {
+            $(document).on('transitionend', function (event) {
+                // Whenever transitionend triggers, trigger webkitTransitionEnd
+                // on the same element so the edetail library runs correctly
+                // in Chrome 36+.
+                $(event.target).trigger('webkitTransitionEnd');
+            });
         }
 
     };

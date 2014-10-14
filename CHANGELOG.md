@@ -1,3 +1,6 @@
+## v1.2.0
+- Add `fixTransitionEnd` that ensures `webkitTransitionEnd` is always triggered in Chrome 36+ so slide focus and other things in the edetail library trigger correctly.
+
 ## v1.1.0
 - Add optional transparent and larger slide arrows hit area.
 - Allow left/right cursor keys to navigate slides: not optional, comes with the slide arrows.
